@@ -6,7 +6,7 @@ class Deck extends Component {
   render() {
     return (
       <View>
-        <Text>Deck</Text>
+        <Text>Deck {this.props.navigation.getParam('deckName')}</Text>
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Quiz')}>
           <Text>Go to Quiz</Text>
         </TouchableOpacity>

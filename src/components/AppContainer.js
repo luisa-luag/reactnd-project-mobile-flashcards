@@ -7,10 +7,10 @@ import Quiz from './Quiz';
 import AddCard from './AddCard'
 
 const TabNavigator = createMaterialTopTabNavigator({
-  Decks: {
+  DeckList: {
     screen: DeckList,
     navigationOptions: {
-      title: 'DeckList'
+      title: 'Decks'
     }
   },
   NewDeck: {
