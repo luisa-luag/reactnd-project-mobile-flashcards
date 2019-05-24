@@ -35,7 +35,7 @@ class Deck extends Component {
         <Text style={styles.cardCount}>{questions.length} cards</Text>
         </View>
         <View style={[styles.container, styles.innerContainer]}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('AddCard')}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('AddCard', {deckName: title})}>
             <View style={[styles.button, {backgroundColor: 'white'}]}>
               <Text style={[styles.buttonText, {color: 'black'}]}>Add Card</Text>
             </View>

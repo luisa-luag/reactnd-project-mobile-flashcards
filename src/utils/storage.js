@@ -28,3 +28,11 @@ export function getAllDecks() {
 export function getDeck(deckName) {
   return AsyncStorage.getItem(DECKS_STORAGE_KEY).then(results => JSON.parse(results)[deckName]);
 }
+
+export function saveQuestion(deckName, question) {
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY).then((results) => {
+    let data = JSON.parse(results);
+    data[deckName].questions.push(question);
+    AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data));
+  });
+}
