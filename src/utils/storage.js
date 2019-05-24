@@ -24,3 +24,7 @@ export function createDeck(deckName) {
 export function getAllDecks() {
   return AsyncStorage.getItem(DECKS_STORAGE_KEY).then(results => results !== null ? Object.values(JSON.parse(results)) : []);
 }
+
+export function getDeck(deckName) {
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY).then(results => JSON.parse(results)[deckName]);
+}
