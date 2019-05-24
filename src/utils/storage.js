@@ -12,6 +12,7 @@ export function createDeck(deckName) {
       return false;
     }
     data[deckName] = {
+      key: deckName,
       title: deckName,
       questions: []
     };
@@ -21,5 +22,5 @@ export function createDeck(deckName) {
 }
 
 export function getAllDecks() {
-  return AsyncStorage.getItem(DECKS_STORAGE_KEY);
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY).then(results => results !== null ? Object.values(JSON.parse(results)) : []);
 }
