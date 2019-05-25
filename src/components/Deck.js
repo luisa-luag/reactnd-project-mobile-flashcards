@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ToastAndroid } from 'react-native';
 import { getDeck } from '../utils/storage';
 
 class Deck extends Component {
-
   state = {
     title: this.props.navigation.getParam('deckName'),
     questions: []
@@ -26,13 +25,22 @@ class Deck extends Component {
     this.focusListener.remove();
   }
 
+  startQuiz = () => {
+    const { questions } = this.state;
+    if (questions.length > 0) {
+      this.props.navigation.navigate('Quiz', {questions: questions});
+    } else {
+      ToastAndroid.show(`This deck must have at least 1 card to start a Quiz!`, ToastAndroid.SHORT);
+    }
+  };
+
   render() {
     const { title, questions } = this.state;
     return (
       <View style={styles.container}>
         <View style={[styles.container, styles.innerContainer]}>
           <Text style={styles.title}>{title}</Text>
-        <Text style={styles.cardCount}>{questions.length} cards</Text>
+        <Text style={styles.cardCount}>{questions.length} card{questions.length === 1 ? '' : 's'}</Text>
         </View>
         <View style={[styles.container, styles.innerContainer]}>
           <TouchableOpacity onPress={() => this.props.navigation.navigate('AddCard', {deckName: title})}>
@@ -40,7 +48,7 @@ class Deck extends Component {
               <Text style={[styles.buttonText, {color: 'black'}]}>Add Card</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Quiz')}>
+          <TouchableOpacity onPress={this.startQuiz}>
             <View style={styles.button}>
               <Text style={styles.buttonText}>Start Quiz</Text>
             </View>
@@ -50,8 +58,6 @@ class Deck extends Component {
     );
   }
 }
-
-export default Deck;
 
 const styles = StyleSheet.create({
   container: {
@@ -89,3 +95,5 @@ const styles = StyleSheet.create({
     color: 'white'
   }
 });
+
+export default Deck;
