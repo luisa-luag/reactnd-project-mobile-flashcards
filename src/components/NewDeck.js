@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, ToastAndroid, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, ToastAndroid, StyleSheet, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { createDeck } from '../utils/storage';
 
 class NewDeck extends Component {
@@ -37,7 +37,7 @@ class NewDeck extends Component {
     const { deckName } = this.state;
 
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <Text style={styles.mainText}>Give a name to your new deck:</Text>
           <View style={styles.textInput}>
             <TextInput
@@ -54,7 +54,7 @@ class NewDeck extends Component {
             <Text style={styles.buttonText}>Create New Deck</Text>
           </View>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
