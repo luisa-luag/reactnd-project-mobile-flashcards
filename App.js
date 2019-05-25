@@ -2,9 +2,14 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import AppContainer from './src/components/AppContainer';
 import StatusBar from './src/components/StatusBar';
+import { setLocalNotification } from './src/utils/notification';
 
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+
   render() {
     return (
       <View style={styles.container}>
